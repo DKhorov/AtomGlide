@@ -1,0 +1,620 @@
+// Base styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// Mobile message
+.mobile-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #1e1e1e;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-family: 'SF Pro Text', sans-serif;
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #007acc;
+  }
+
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #ccc;
+    max-width: 500px;
+    line-height: 1.6;
+  }
+}
+
+// Main container
+.codes {
+  background-image: url('../../img/wall.png');
+  background-repeat: repeat;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  padding: 0;
+  position: relative;
+}
+
+.codes-container {
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 40px;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+// Typography
+@font-face {
+  font-family: 'SF Pro Text';
+  src: url('../../style/font/SFProText-Bold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+.codes-title {
+  font-family: 'SF Pro Text';
+  font-weight: bold;
+  font-size: 3rem;
+  color: white;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.codes-subtitle {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 2rem;
+}
+
+.codes-logo {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+// Buttons
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.code-btn {
+  font-family: 'SF Pro Text', sans-serif;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  padding: 1.2rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  &:active {
+    transform: translateY(1px);
+  }
+  
+  .btn-icon {
+    font-size: 1.5rem;
+  }
+}
+
+.primary {
+  background-color: #ffffff;
+  color: #000000;
+  
+  &:hover {
+    background-color: #f0f0f0;
+  }
+}
+
+.secondary {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+.tertiary {
+  background-color: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+// Workspace styles
+.workspace {
+  display: flex;
+  height: calc(100vh - 50px);
+  width: 100%;
+  margin-top: 50px;
+  position: relative;
+
+  &.maximized {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    margin-top: 0;
+    height: 100vh;
+  }
+}
+
+.window-controls {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  z-index: 1001;
+  -webkit-app-region: drag;
+}
+
+.window-title {
+  color: #fff;
+  font-family: 'SF Pro Text', sans-serif;
+  font-size: 0.9rem;
+}
+
+.window-buttons {
+  display: flex;
+  gap: 10px;
+  -webkit-app-region: no-drag;
+
+  button {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    transition: background 0.2s;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    &:last-child:hover {
+      background: #e81123;
+    }
+  }
+}
+
+.file-manager {
+  width: 500px;
+  background: rgba(30, 30, 30, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-right: 1px solid #444;
+  overflow-y: auto;
+}
+
+.file-header {
+  margin-bottom: 20px;
+  
+  h3 {
+    color: white;
+    margin-bottom: 15px;
+    font-family: 'SF Pro Text';
+  }
+}
+
+.file-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+
+  input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #444;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono';
+    font-size: 0.9rem;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  button {
+    background: #007acc;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'SF Pro Text';
+    transition: background 0.2s;
+
+    &:hover {
+      background: #0062a3;
+    }
+  }
+}
+
+.file-list {
+  .file-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    color: #ccc;
+    cursor: pointer;
+    border-radius: 4px;
+    margin: 2px 0;
+    transition: all 0.2s;
+    font-family: 'JetBrains Mono';
+    font-size: 0.9rem;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    &.active {
+      background: rgba(0, 122, 204, 0.3);
+      color: white;
+    }
+
+    .file-icon {
+      margin-right: 8px;
+      font-size: 1rem;
+    }
+  }
+}
+
+.editor-container {
+  flex: 1;
+  background: #1e1e1e;
+  width: 100%;
+  height: 100%;
+}
+
+// Project form styles
+.project-form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 30px;
+  animation: fadeIn 0.3s ease;
+  width: 100%;
+}
+
+.back-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background 0.2s;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .btn-icon {
+    font-size: 1.8rem;
+  }
+}
+
+.form-title {
+  font-family: 'SF Pro Text';
+  color: white;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 2.2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  
+  label {
+    font-family: 'JetBrains Mono';
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+  }
+  
+  input[type="text"] {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 12px 15px;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-family: 'JetBrains Mono';
+    
+    &:focus {
+      outline: none;
+      border-color: rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.15);
+    }
+  }
+}
+
+.type-selector {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.type-option {
+  padding: 12px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.8);
+  font-family: 'JetBrains Mono';
+  
+  &.active {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+    color: white;
+  }
+  
+  input {
+    display: none;
+  }
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+  
+  .code-btn {
+    max-width: 200px;
+  }
+}
+
+// Projects modal
+.projects-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(40, 40, 40, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 12px;
+  z-index: 1000;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+  h3 {
+    color: white;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-family: 'JetBrains Mono';
+  }
+}
+
+.projects-list {
+  max-height: 60vh;
+  overflow-y: auto;
+  margin-bottom: 1.5rem;
+}
+
+.project-item {
+  padding: 1rem;
+  margin: 0.5rem 0;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'SF Pro Text';
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+  }
+}
+
+.close-btn {
+  width: 100%;
+  padding: 12px;
+  background: #007acc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: 'SF Pro Text';
+  font-weight: 500;
+
+  &:hover {
+    background: #0062a3;
+  }
+}
+
+// Panel and info
+.panel-code {
+  width: 100%;
+  height: 50px;
+  background-color: rgba(24, 23, 23, 0.6);
+  border-bottom: 0.5px solid rgb(62, 62, 62);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: default;
+}
+
+.menu-bar {
+  display: flex;
+  gap: 20px;
+  padding-left: 20px;
+
+  .menu-item {
+    color: #fff;
+    font-family: 'SF Pro Text', sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background 0.2s;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+.code-info {
+  font-family: 'JetBrains Mono';
+  color: #383838;
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 20px;
+  margin-left: 30px;
+  font-size: 0.8rem;
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .codes-container {
+    padding: 30px 20px;
+  }
+  
+  .codes-title {
+    font-size: 2.2rem;
+  }
+  
+  .codes-subtitle {
+    font-size: 1rem;
+  }
+  
+  .code-btn {
+    font-size: 1rem;
+    padding: 1rem 1.5rem;
+  }
+
+  .project-form {
+    padding: 20px;
+  }
+  
+  .form-title {
+    font-size: 1.8rem;
+  }
+  
+  .type-selector {
+    gap: 0.5rem;
+  }
+  
+  .type-option {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+    
+    .code-btn {
+      max-width: none;
+      width: 100%;
+    }
+  }
+
+  .file-manager {
+    width: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .workspace {
+    flex-direction: column;
+    height: calc(100vh - 50px);
+  }
+
+  .file-manager {
+    width: 100%;
+    height: 200px;
+    border-right: none;
+    border-bottom: 1px solid #444;
+  }
+
+  .editor-container {
+    height: calc(100% - 200px);
+  }
+}

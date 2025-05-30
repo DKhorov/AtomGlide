@@ -1,0 +1,75 @@
+.root {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+  margin-top: 3px;
+}
+
+.avata2r {
+  width: 40px;
+  height: 40px;
+  border-radius: 30px;
+  margin-right: 10px;
+}
+
+.userName {
+  font-weight: 700;
+  font-size: 13px;
+  color: white;
+  margin-bottom:0;
+  margin-top: 1px;
+  font-family: 'JetBrains Mono'
+}
+
+.userDetails {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.additional {
+  font-size: 12px;
+  opacity: 0.6;
+  font-family: Arial, Helvetica, sans-seri;
+  margin-right: 10px;
+  color: white;
+}
+
+.creationDate {
+  color: #fffcfc; // Измените на нужный вам цвет
+  font-family: Arial, Helvetica, sans-seri;
+
+}
+
+
+
+
+
+
+
+.metaInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.postTag {
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: white;
+}
+
+// UserInfo.module.scss
+.verifiedBadge {
+  font-size: 16px !important;
+  margin-left: 4px;
+  margin-top: -18px;
+  color: #2196F3 !important; // Синий цвет для проверки
+}
+
+.shopBadge {
+  font-size: 16px !important;
+  margin-left: 4px;
+  color: #FF5722 !important; // Оранжевый для магазина
+}
