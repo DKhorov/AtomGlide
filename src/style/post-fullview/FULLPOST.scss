@@ -1,0 +1,231 @@
+.full-post-container {
+  width: 100%; /* Фиксированная ширина */
+  height: 98vh;
+  overflow-y: auto;
+  margin: 1rem auto;
+  padding: 0 1rem; /* Чуть больше отступов */
+  box-sizing: border-box;
+  margin-bottom:20%;
+
+
+  .post-container {
+    background: #0d1117;
+    border-radius: 10px;
+    padding: 1rem;
+    margin: 1rem 0;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    border: 1px solid #30363d;
+
+    .post-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .post-title {
+      font-size: 1.6rem;
+      color: #e6edf3;
+      margin: 0;
+      line-height: 1.4;
+      word-break: break-word;
+      text-align: center; /* Выравнивание */
+    }
+
+    .post-meta {
+      display: flex;
+      gap: 0.8rem;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: #7d8590;
+    }
+
+    .post-image {
+      width: 100%;
+      max-height: 450px; /* Ограничение */
+      border-radius: 8px;
+      margin: 1rem 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+      object-fit: cover;
+      display: block;
+    }
+
+    .post-content {
+      margin-top: 1rem;
+      color: #e6edf3;
+      line-height: 1.8;
+      font-size: 1rem;
+      text-align: justify; /* Равномерное распределение текста */
+    }
+  }
+}
+
+/* ✅ Адаптация для мобильных устройств */
+@media (max-width: 768px) {
+  .full-post-container {
+    width: 95vw;
+    padding: 0 0.5rem;
+  }
+
+  .post-title {
+    font-size: 1.4rem; /* Чуть меньше */
+    margin-bottom: 1rem;
+  }
+
+  .comments-list{
+    margin-bottom:  20rem ;
+  }
+
+  .post-content {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .post-image {
+    max-height: 320px; /* Уменьшена высота */
+    margin-top: -10px; /* Поднято ближе к тексту */
+  }
+}
+
+/* ✅ Тонкая красивая полоса прокрутки */
+.full-post-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.full-post-container::-webkit-scrollbar-track {
+  background: #0d1117;
+}
+
+.full-post-container::-webkit-scrollbar-thumb {
+  background: #4a96f3;
+  border-radius: 2px;
+}
+
+.full-post-container::-webkit-scrollbar-thumb:hover {
+  background: #357abd;
+}
+
+
+.comments-section {
+  border-radius: 10px;
+  padding: 1rem;
+
+  margin: 2rem 0 6rem; // Увеличиваем нижний отступ  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Заголовок блока */
+.comments-section h3 {
+  color: #e6edf3;
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+/* Форма комментария */
+.comment-form {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.comment-input {
+  width: 100%;
+  height: auto;
+   background-color: #1e2329;
+ border: solid #2f3741 1.5px;
+  border-radius: 8px;
+  padding: 1rem;
+  color: #e6edf3;
+  font-size: 1rem;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+
+  &:focus {
+    outline: none;
+    border-color: #58a6ff;
+  }
+}
+
+/* Комментарии */
+.comments-list .comment {
+  background: #0d1117;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  border-left: 4px solid #238636;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: rgba(35, 134, 54, 0.1);
+  }
+}
+
+.comment-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.comment-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.comment-author {
+  flex: 1;
+  color: #e6edf3;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.comment-time {
+  color: #7d8590;
+  font-size: 0.85rem;
+  margin-left: 20px;
+}
+
+/* Контент комментария */
+.comment-content {
+  color: #e6edf3;
+  line-height: 1.6;
+  font-size: 1rem;
+  word-break: break-word;
+}
+
+/* Кнопки действий */
+.comment-actions {
+  display: flex;
+  gap: 0.7rem;
+  margin-top: 1rem;
+
+  button {
+    background: none;
+    border: none;
+    color: #7d8590;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(177, 186, 196, 0.12);
+      transform: scale(1.05);
+    }
+
+    &.danger {
+      color: #f85149;
+    }
+  }
+}
+
+
+.form-actions button{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: -25px;
+}

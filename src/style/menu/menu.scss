@@ -1,0 +1,291 @@
+.dtf-menu {
+  width: auto;         
+  height: 300px;
+  padding: 0 10px;   
+  margin-top: 15px;   
+  box-sizing: border-box; 
+  border-radius: 10px;
+
+  scrollbar-width: thin; // Для Firefox
+  scrollbar-color: #282828 #000000; // Для Firefox
+}
+
+/* Стилизация для WebKit */
+.dtf-menu::-webkit-scrollbar {
+  width: 0px;
+}
+
+.dft-button{
+  display: flex;
+  flex-direction: column;
+}
+.dft-menu-container{
+  margin-top: 10px;
+}
+
+.dft-bth{
+    --height: 40px;
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    font-size: 14px;
+    height: var(--height);
+    padding-left: 8px;
+    padding-right: 8px;
+
+
+    border-radius: 10px;
+    cursor: pointer;
+    color: rgb(202, 202, 202);
+    text-decoration: none;
+}
+
+.dft-bth:hover{
+  background-color: rgb(33, 33, 33);
+}
+
+.qazwsx{
+  width: 20px;
+  height: 20px;
+  min-width: 20px; // Добавлено
+  min-height: 20px; // Добавлено
+  flex-shrink: 0; // Добавлено
+  margin: 10px;
+  color: rgb(202, 202, 202);
+}
+.dft-theme{
+  margin-top: 10px;
+  margin-left: 20px;
+}
+.dft-theme2{
+  margin-top: 30px;
+  margin-left: 20px;
+  margin-bottom:  6rem; // Увеличиваем нижний отступ
+}
+
+.ft-theme-title{
+  font-family: 'JetBrains Mono';
+  color: rgb(87, 87, 87);
+}
+
+.theme-pos{
+  display: flex;
+  margin-top: 15px;
+  
+}
+.pos-title{
+  margin-left: 10px;
+  margin-top: 6px;
+  font-size: 14px;
+
+}
+.tg-cont{
+  padding: 0 10px 0 10px;
+  background-color: rgb(63, 63, 63);
+  border-radius: 20px;
+  margin-top: 10px;
+
+}
+.tg-title{
+  color: white;
+  text-align: center;
+}
+
+.dock {
+  position: fixed;
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  background: rgba(22, 27, 34, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  z-index: 1000;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+
+  &.dock-left {
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    flex-direction: column;
+    margin: 10px;
+  }
+
+  &.dock-right {
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    flex-direction: column;
+    margin: 10px;
+  }
+
+  &.dock-top {
+    left: 50%;
+    top: 20px;
+    transform: translateX(-50%);
+    flex-direction: row;
+    margin: 10px;
+  }
+
+  &.dock-bottom {
+    left: 50%;
+    bottom: 20px;
+    transform: translateX(-50%);
+    flex-direction: row;
+    margin: 10px;
+  }
+
+  .dft-bth {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    color: #8b949e;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.05);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      transform: scale(1.1);
+    }
+
+    &.active {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.15);
+      
+      .qazwsx {
+        transform: scale(1.1);
+      }
+    }
+
+    .qazwsx {
+      font-size: 20px;
+      transition: transform 0.2s ease;
+    }
+  }
+
+  .settings-popup {
+    position: absolute;
+    left: calc(100% + 10px);
+    top: 0;
+    background: rgba(22, 27, 34, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 16px;
+    min-width: 200px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+    h3 {
+      color: #fff;
+      margin: 0 0 12px 0;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .position-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      .position-button {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border: none;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        color: #8b949e;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        width: 100%;
+        text-align: left;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.1);
+          color: #fff;
+        }
+
+        &.active {
+          background: #1f6feb;
+          color: #fff;
+        }
+
+        .qazwsx {
+          font-size: 18px;
+        }
+
+        span {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  // Adjust popup position based on dock position
+  &.dock-right .settings-popup {
+    left: auto;
+    right: calc(100% + 10px);
+  }
+
+  &.dock-top .settings-popup,
+  &.dock-bottom .settings-popup {
+    left: 0;
+    top: calc(100% + 10px);
+  }
+}
+
+// Стили для кнопки настроек dock
+.dock-settings-button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 8px;
+  color: #8b949e;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+  }
+}
+
+.dock-position-menu {
+  background: #161b22;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 8px;
+  position: absolute;
+  z-index: 1001;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  .position-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    color: #8b949e;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+    }
+
+    &.active {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+}

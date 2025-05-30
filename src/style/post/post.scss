@@ -1,0 +1,787 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.post-ad {
+  width: 360px; // Вместо 540px
+  max-width: 100%;
+  min-height: 540px;
+  cursor: pointer;
+  animation: fadeIn 0.6s ease-out forwards;
+  opacity: 0;
+}
+.post-header{
+  display: flex;
+  justify-content: space-between;
+}
+.image-container {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; // 16:9 aspect ratio
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.1);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.05) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite linear;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .skeleton-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #161b22;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+}
+
+.img-IKLS {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Центрирование изображения и возможное перекрытие */
+}
+
+
+/* Windows-like titlebar */
+.MuiDialogTitle-root {
+  user-select: none;
+    background-color: #33333379;
+  backdrop-filter: blur(5px) saturate(0.5);
+  -webkit-backdrop-filter: blur(5px) saturate(0.5);
+  cursor: default !important;
+  width: 100%;
+}
+
+/* Close button hover effect */
+.MuiDialogTitle-root button:hover {
+  background-color: #e81123 !important;
+  color: white !important;
+}
+.post-GHJ {
+  break-inside: avoid-column;
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 16px;
+  background-color: rgba(23, 25, 35, 0.6);
+  backdrop-filter: blur(10px) saturate(1.8);
+  -webkit-backdrop-filter: blur(10px) saturate(1.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  min-height: 400px;
+
+  &:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    border-color: rgba(255, 255, 255, 0.12);
+
+    .image-container img {
+      transform: scale(1.05);
+    }
+  }
+
+  @for $i from 1 through 20 {
+    &:nth-child(#{$i}) {
+      animation: fadeInUp 0.6s ease-out forwards;
+      animation-delay: #{$i * 0.05}s;
+    }
+  }
+}
+
+.title-GHJ {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.post-description2 {
+  position: relative;
+  font-family: 'SF Pro Text', sans-serif;
+  font-weight: 400;
+  font-size: 0.7rem;
+  color: rgb(186, 186, 186);
+  margin-top: 8px;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  max-height: 100px;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+
+  &.expanded {
+    max-height: none;
+  }
+}
+
+.read-more-btn {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 8px;
+  background: rgba(24, 163, 249, 0.1);
+  border: 1px solid rgba(24, 163, 249, 0.3);
+  border-radius: 12px;
+  color: #18a3f9;
+  font-size: 0.65rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(24, 163, 249, 0.2);
+    transform: translateY(-1px);
+  }
+}
+.description-GHJ {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.4;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  position: relative;
+
+  &:empty {
+    display: none;
+  }
+
+  &.expanded {
+    -webkit-line-clamp: unset;
+  }
+
+  .read-more {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(90deg, transparent, rgba(23, 25, 35, 0.9) 40%);
+    padding: 0 8px;
+    color: #58a6ff;
+    font-size: 0.8rem;
+    cursor: pointer;
+    font-weight: 500;
+    
+    &:hover {
+      color: #79b6ff;
+    }
+  }
+}
+
+.meta-info {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin: 10px 0 0;
+  flex-wrap: wrap;
+}
+
+.tags-GHJ {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 4px 0;
+  position: relative;
+  padding-right: 60px;
+
+  &:empty {
+    display: none;
+    margin: 0;
+  }
+
+  .tag {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 8px;
+    background: rgba(88, 166, 255, 0.1);
+    color: #58a6ff;
+    border: 1px solid rgba(88, 166, 255, 0.2);
+    transition: all 0.2s ease;
+    text-shadow: 0 0 8px rgba(88, 166, 255, 0.3);
+    animation: glow 1.5s ease-in-out infinite alternate;
+    line-height: 1.2;
+
+    &:hover {
+      background: rgba(88, 166, 255, 0.15);
+      border-color: rgba(88, 166, 255, 0.3);
+      transform: translateY(-1px);
+    }
+
+    &:nth-child(3n + 1) {
+      color: #ff7eb6;
+      background: rgba(255, 126, 182, 0.1);
+      border-color: rgba(255, 126, 182, 0.2);
+      text-shadow: 0 0 8px rgba(255, 126, 182, 0.3);
+    }
+
+    &:nth-child(3n + 2) {
+      color: #7effb2;
+      background: rgba(126, 255, 178, 0.1);
+      border-color: rgba(126, 255, 178, 0.2);
+      text-shadow: 0 0 8px rgba(126, 255, 178, 0.3);
+    }
+  }
+
+  .tags-more {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 6px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    line-height: 1.2;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 0.8);
+    }
+  }
+}
+
+.post-content {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+  min-height: 100%;
+
+  .post-meta {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+    &:only-child {
+      margin-top: auto;
+      padding-top: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+  }
+}
+
+.post-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+
+  .action-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: rgba(255, 255, 255, 0.6);
+    transition: all 0.2s ease;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+
+    &:hover {
+      color: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    svg {
+      font-size: 1rem;
+    }
+
+    span {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+.post-stats {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.8rem;
+
+  svg {
+    font-size: 0.9rem;
+  }
+}
+
+.delete-dialog {
+  .MuiDialog-paper {
+    background: #0D1116;
+    border: 1px solid #3b424c;
+    color: rgba(218, 243, 255, 0.95);
+    border-radius: 20px;
+  }
+}
+
+.bth-white9 {
+  color: black;
+  background-color: white;
+  font-family: 'SF Pro Text', sans-serif;
+  padding: 10px 20px;
+  border-radius: 50px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+}
+
+.posts-grid {
+  &.grid-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    padding: 16px;
+    
+    .post-GHJ {
+      margin-bottom: 0;
+    }
+  }
+
+  &.list-view {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    columns: unset;
+
+    .post-GHJ {
+      display: flex;
+      margin-bottom: 0;
+
+      .image-container {
+        width: 200px;
+        padding-top: 0;
+        height: 150px;
+        flex-shrink: 0;
+      }
+
+      .post-content {
+        flex: 1;
+        padding: 16px;
+      }
+    }
+  }
+
+  // Masonry view (default)
+  &:not(.grid-view):not(.list-view) {
+    columns: 4 300px;
+    column-gap: 16px;
+    padding: 16px;
+    
+    .post-GHJ {
+      break-inside: avoid-column;
+      margin-bottom: 16px;
+    }
+  }
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0;
+
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .avatar {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+    }
+
+    .user-details {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+
+      .username {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1;
+      }
+
+      .date {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.5);
+        line-height: 1;
+      }
+    }
+  }
+}
+
+// Медиа-запросы для адаптивности
+@media (max-width: 1400px) {
+  .posts-grid {
+    columns: 3 300px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .posts-grid {
+    columns: 2 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .posts-grid {
+    columns: 2 250px;
+    column-gap: 12px;
+    padding: 12px;
+  }
+
+  .post-GHJ {
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .posts-grid {
+    columns: 1 auto;
+  }
+}
+
+// Анимация появления
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.post-GHJ {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.tags-GHJ .tag {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px 12px;
+  border-radius: 16px;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2),
+  }
+  to {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2),
+  }
+}
+
+.tag {
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+      45deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
+    transform: rotate(45deg);
+    animation: shine 3s infinite linear;
+    pointer-events: none;
+  }
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(45deg);
+  }
+}
+
+.action-btn {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+
+  &:hover::after {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+
+  svg {
+    transition: transform 0.3s ease;
+  }
+
+  &:hover svg {
+    transform: scale(1.2);
+  }
+}
+
+// Добавьте эти стили в конец файла profile.scss
+
+/* Мобильная оптимизация - улучшенная версия */
+@media (max-width: 600px) {
+  .profile-container {
+    padding: 12px !important;
+  }
+
+  .profile-avatar {
+    width: 180px !important;
+    height: 180px !important;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .profile-info {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .profile-name {
+    font-size: 22px !important;
+    line-height: 1.2;
+  }
+
+  .profile-username {
+    font-size: 16px !important;
+  }
+
+  .profile-bio {
+    font-size: 14px;
+    margin: 12px 0;
+    -webkit-line-clamp: 4;
+    max-height: 84px;
+  }
+
+  .followers-panel {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 16px 0;
+
+    .followers-link {
+      margin-right: 12px;
+      font-size: 13px;
+    }
+  }
+
+  .profile-details {
+    font-size: 13px;
+    margin-top: 12px;
+
+    .info-item {
+      justify-content: center;
+      margin-bottom: 6px;
+    }
+  }
+
+  .action-button {
+    max-width: 200px;
+    margin: 12px auto 0;
+  }
+
+  .profile-tabs {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--background-dark);
+    padding-top: 8px;
+
+    .tab-item {
+      padding: 8px 12px;
+      font-size: 13px;
+    }
+  }
+
+  .overview-content {
+    .pinned-items {
+      .posts-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  }
+
+  .edit-profile-content {
+    margin: 20px auto;
+    padding: 16px;
+    max-height: calc(100vh - 40px);
+    width: 95%;
+  }
+
+  .profile-avatar-wrapper {
+    margin-bottom: 12px;
+  }
+
+  .profile-left-side {
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 16px;
+  }
+
+  // Улучшение читаемости текста на маленьких экранах
+  .readme-content, .post-card {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  // Оптимизация отступов
+  .overview-content, .posts-section {
+    padding-top: 8px;
+  }
+
+  // Улучшение кнопок для touch-устройств
+  .action-button, .tab-item, .edit-button {
+    min-height: 44px; // Рекомендованный размер для touch
+  }
+}
+
+/* Особые стили для очень маленьких экранов */
+@media (max-width: 400px) {
+  .profile-avatar {
+    width: 150px !important;
+    height: 150px !important;
+  }
+
+  .profile-name {
+    font-size: 20px !important;
+  }
+
+  .profile-username {
+    font-size: 14px !important;
+  }
+
+  .action-button {
+    max-width: 100%;
+  }
+
+  .followers-panel {
+    gap: 8px;
+    
+    .followers-link {
+      margin-right: 8px;
+    }
+  }
+}
+
+// Улучшение performance на мобильных устройствах
+@media (hover: none) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  .profile-avatar:hover, 
+  .action-button:hover, 
+  .tab-item:hover {
+    transform: none !important;
+  }
+}

@@ -1,0 +1,7 @@
+---------- AtomGlide ----------
+- src: /src/style/font        -
+- F: 0  Fi:12                 -
+- ID Number: 1200 (Read Dock!)-
+-------------------------------
+
+!!! THIS IS FONT FROM macOS Sysytem Apple inc. !!!

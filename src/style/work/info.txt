@@ -1,0 +1,294 @@
+---------- AtomGlide ----------
+- src: /src/style/work        -
+- F: 0  Fi:2                  -
+- ID Number: 1200 (Read Dock!)-
+-------------------------------
+
+
+
+  if (!window.localStorage.getItem('token') && !isAuth) {
+    return (
+      <div className="dark-github-home">
+      {/* Hero Section */}
+      {isAuthenticated && (
+        <>
+          <Newpost
+            isOpen={isModalOpen} 
+            onClose={() => setIsModalOpen(false)}
+          />
+          <Newpostm
+            isOpen={isModalmOpen} 
+            onClick={() => setIsModalmOpen(true)}
+          />
+        </>
+      )}
+      <section className="hero-section">
+        <div className="hero-container">
+          <motion.div 
+            className="hero-left"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 className="hero-title">Built for developers</h1>
+            <p className="hero-text">
+              AtomGlide — проект, созданный для разработчиков. С его помощью они смогут делиться проектами, тренироваться и писать код на различных языках. Наше комьюнити, в котором уже более 150 человек, готово помочь каждому!
+            </p>
+          </motion.div>
+          
+          <motion.div 
+            className="hero-right"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <div className="hero-image-container">
+              <img 
+                src={image}
+                alt="Developer workspace" 
+                className="hero-image"
+              />
+              <motion.div 
+                className="image-overlay"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.3 }}
+                transition={{ duration: 1, delay: 0.5 }}
+              />
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="features-section">
+        <div className="features-container">
+          <motion.div 
+            className="features-header"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <h2 className="features-title">Get started with AtomGlide</h2>
+            <p className="features-subtitle">Начинай работу в AtomGlide</p>
+          </motion.div>
+          <center>
+              {isMobile ? <button className='white-bth' onClick={() => setIsModalmOpen(true)}>Создать пост</button> : <button className='white-bth' onClick={() => setIsModalOpen(true)}>Создать пост</button>  }          </center>
+
+          <div className="features-grid">
+            <Link to="/wallet">
+              <motion.div 
+                className="feature-card"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                whileHover={{ y: -5 }}
+              >
+                <div className="card-icon">💳</div>
+                <h3 className="card-title">Wallet в AtomGlide</h3>
+                <p className="card-text">Совершай платежные операции в сети AtomGlide с помощью валюты Atom.</p>
+              </motion.div>
+            </Link>
+            {!isMobile && (
+              <motion.div 
+                onClick={() => setIsModalOpen(true)}
+                className="feature-card"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                whileHover={{ y: -5 }}
+              >
+                <div className="card-icon">🌐</div>
+                <h3 className="card-title">AtomGlide Wizard</h3>
+                <p className="card-text">Мастер для создания постов.</p>
+              </motion.div>
+              
+            )}
+            {!isMobile && (
+              <Link to="/code">
+              <motion.div 
+                className="feature-card"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                whileHover={{ y: -5 }}
+              >
+                <div className="card-icon">⛏️</div>
+                <h3 className="card-title">AtomGlide Code</h3>
+                <p className="card-text">Удобный редактор кода, похожий на Visual Studio Code.</p>
+              </motion.div>
+            </Link>)}
+            {!isMobile && (
+            <Link to="/priv">
+              <motion.div 
+                className="feature-card"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                whileHover={{ y: -5 }}
+              >
+                <div className="card-icon">⚡</div>
+                <h3 className="card-title">AtomGLide Chats</h3>
+                <p className="card-text">Присылай друзьям свои проекты в нашем мессенджере!</p>
+              </motion.div>
+            </Link>)}
+          </div>
+            
+           
+          
+          <motion.div 
+            className="see-more"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 1 }}
+          >
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Repository Section */}
+      <section className="repository-section">
+        <center>
+          <div>
+            <h2 className="features-title">Рекомендации</h2>
+            <p className="features-subtitle">самые последние посты в atomglide</p>
+          </div>
+        </center>
+        <div className="repository-container">
+          {posts.items.map((post) => (
+            <Post
+              key={post._id}
+              _id={post._id}
+              imageUrl={post.imageUrl}
+              title={post.title}
+              text={post.text}
+              tags={post.tags}
+              language={post.language}
+              viewsCount={post.viewsCount}
+              commentsCount={post.commentsCount}
+              user={{
+                ...(post.user || {}),
+                accountType: post.user?.accountType,
+              }}
+              createdAt={post.createdAt}
+              isEditable={userData?._id === (post.user?._id || null)}
+              likesCount={post.likes?.count || 0}
+              dislikesCount={post.dislikes?.count || 0}
+              userReaction={post.userReaction}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* Open Source Section */}
+      <section className="opensource-section">
+        <center>
+          <div>
+            <h2 className="features-title">Популярные посты</h2>
+            <p className="features-subtitle">самые Популярные посты в atomglide</p>
+          </div>
+        </center>
+        <div className="repository-container">
+          {popularPosts.length > 0 ? (
+            popularPosts.map((post, index) => (
+              <div 
+                key={post._id} 
+                className="post-animate"
+                style={getPostAnimationStyle(index)}
+              >
+                <Post
+                  _id={post._id}
+                  imageUrl={post.imageUrl}
+                  title={post.title}
+                  text={post.text}
+                  tags={post.tags}
+                  language={post.language}
+                  viewsCount={post.viewsCount}
+                  commentsCount={post.commentsCount}
+                  user={post.user || {}}
+                  createdAt={post.createdAt}
+                  isEditable={userData?._id === (post.user?._id || null)}
+                  likesCount={post.likes?.count || 0}
+                  dislikesCount={post.dislikes?.count || 0}
+                  userReaction={post.userReaction}
+                />
+              </div>
+            ))
+          ) : (
+            <div className="no-posts-found">
+              <p>Нет популярных постов</p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Tools Section */}
+      <section className="tools-section">
+        <div className="tools-container">
+          <motion.h2 
+            className="tools-title"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
+            Реклама
+          </motion.h2>
+          
+          <div className="tools-grid">
+            <motion.div 
+              className="tool-card"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <h3 className="tool-title">Telegram канал автора</h3>
+              <p className="tool-text">DK Studio Community - тг канал автора новости про проект и другое https://t.me/@dkdevelop</p>
+            </motion.div>
+            
+            <motion.div 
+              className="tool-card"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <h3 className="tool-title">ТикТок канал автора</h3>
+              <p className="tool-text">Обзоры про сервис только там @atomglide</p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Feed Section */}
+      <section className="feed-section">
+        <div className="feed-container">
+          <motion.h2 
+            className="feed-title"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
+            AtomGlide Version
+          </motion.h2>
+          
+          <motion.div 
+            className="feed-item"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            whileHover={{ scale: 1.01 }}
+          >
+            <div className="item-header">
+              <span className="username">AtomGlide</span>
+              <span className="action">Active version project</span>
+              <span className="time"></span>
+            </div>
+            <div className="item-content">
+              <span className="repo-name">v5.0</span>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    </div>
+    );
+  }
