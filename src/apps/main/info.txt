@@ -1,0 +1,6 @@
+------------- AtomGLide -------------
+-  Src: src/apps/  type: apps/tools -
+-  ID: 8500  IOP: 23-U2-P9-00       -
+-  DK Stduio Product (c) 2023-2025  -
+-------------------------------------
+

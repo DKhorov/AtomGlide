@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Гул динозаврика с ускорением</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #ffffff;
+        }
+        
+        #game {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+        
+        #dino {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            bottom: 50px;
+            left: 50px;
+            background-color: #555;
+        }
+        
+        #ground {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 50px;
+            background-image: url('gr.png');
+            background-repeat: repeat-x;
+            background-size: 50px 50px;
+        }
+        
+        .cactus {
+            position: absolute;
+            width: 50px;
+            height: 60px;
+            bottom: 50px;
+            background-image: url('кактус.png');
+            background-size: cover;
+        }
+        
+        #score {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-family: Arial, sans-serif;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div id="game">
+        <div id="dino"></div>
+        <div id="ground"></div>
+        <div id="score">0</div>
+    </div>
+
+    <script>
+        // Элементы игры
+        const dino = document.getElementById('dino');
+        const game = document.getElementById('game');
+        const scoreElement = document.getElementById('score');
+        
+        // Переменные состояния игры
+        let isJumping = false;
+        let isGameOver = false;
+        let score = 0;
+        let gameSpeed = 10;
+        let jumpSpeed = 8;
+        let fallSpeed = 10;
+        let maxJumpHeight = 120;
+        
+        // Обработчик нажатия клавиш
+        document.addEventListener('keydown', function(event) {
+            if ((event.code === 'Space' || event.key === 'ArrowUp') && !isJumping && !isGameOver) {
+                jump();
+            }
+        });
+        
+        // Функция прыжка (быстрее и короче)
+        function jump() {
+            isJumping = true;
+            let jumpHeight = 0;
+            
+            // Быстрый подъем
+            const upInterval = setInterval(() => {
+                jumpHeight += jumpSpeed;
+                dino.style.bottom = (jumpHeight + 20) + 'px';
+                
+                // Достигли максимальной высоты - начинаем падать
+                if (jumpHeight >= maxJumpHeight) {
+                    clearInterval(upInterval);
+                    
+                    // Быстрое падение
+                    const downInterval = setInterval(() => {
+                        jumpHeight -= fallSpeed;
+                        dino.style.bottom = (jumpHeight + 20) + 'px';
+                        
+                        // Вернулись на землю
+                        if (jumpHeight <= 0) {
+                            dino.style.bottom = '0px';
+                            clearInterval(downInterval);
+                            isJumping = false;
+                        }
+                    }, 15);
+                }
+            }, 15);
+        }
+        
+        // Создание кактусов
+        function createCactus() {
+            if (isGameOver) return;
+            
+            const cactus = document.createElement('div');
+            cactus.classList.add('cactus');
+            game.appendChild(cactus);
+            
+            let cactusPosition = 1000;
+            cactus.style.left = cactusPosition + 'px';
+            
+            // Движение кактуса с текущей скоростью игры
+            const moveInterval = setInterval(() => {
+                if (cactusPosition < -40) {
+                    clearInterval(moveInterval);
+                    game.removeChild(cactus);
+                    score++;
+                    scoreElement.textContent = score;
+                    
+                    // Увеличиваем скорость каждые 5 очков
+                    if (score % 5 === 0) {
+                        gameSpeed += 1;
+                        // Максимальная скорость - 25
+                        if (gameSpeed > 25) gameSpeed = 25;
+                    }
+                } 
+                else if (
+                    cactusPosition > 50 && 
+                    cactusPosition < 100 && 
+                    !isJumping
+                ) {
+                    gameOver();
+                    clearInterval(moveInterval);
+                } 
+                else {
+                    cactusPosition -= gameSpeed;
+                    cactus.style.left = cactusPosition + 'px';
+                }
+            }, 20);
+        }
+        
+        // Конец игры
+        function gameOver() {
+            isGameOver = true;
+            document.addEventListener('keydown', function restart(e) {
+                if (e.code === 'Space' || e.key === 'ArrowUp') {
+                    location.reload();
+                }
+            });
+            alert('Игра окончена! Ваш счет: ' + score);
+        }
+        
+        // Запускаем генерацию кактусов
+        function startGame() {
+            createCactus();
+            let timeout = Math.max(1000 - score * 20, 300);
+            setTimeout(startGame, timeout);
+        }
+        
+        // Начало игры
+        startGame();
+    </script>
+</body>
+</html>

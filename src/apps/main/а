@@ -1,0 +1,143 @@
+app.post('/music/upload', 
+  checkAuth,
+  uploadLimiter,
+  (req, res, next) => {
+    // Логирование начала загрузки
+    console.log('Начало загрузки файла...');
+    next();
+  },
+  uploadMusic.single('audio'),
+  async (req, res) => {
+    try {
+      // 1. Проверка наличия файла
+      if (!req.file) {
+        console.error('Ошибка: Файл не был загружен');
+        return res.status(400).json({ 
+          success: false,
+          message: 'Файл не был загружен' 
+        });
+      }
+
+      // 2. Валидация MIME-типа
+      const validMimeTypes = [
+        'audio/mpeg', // MP3
+        'audio/wav',  // WAV
+        'audio/ogg',  // OGG
+        'audio/x-m4a', // M4A
+        'audio/aac'   // AAC
+      ];
+
+      if (!validMimeTypes.includes(req.file.mimetype)) {
+        console.error('Неверный MIME-тип:', req.file.mimetype);
+        fs.unlinkSync(req.file.path); // Удаляем невалидный файл
+        return res.status(400).json({
+          success: false,
+          message: 'Неподдерживаемый тип файла. Разрешены только MP3, WAV, OGG, M4A'
+        });
+      }
+
+      // 3. Проверка расширения файла
+      const validExtensions = ['.mp3', '.wav', '.ogg', '.m4a', '.aac'];
+      const fileExt = path.extname(req.file.originalname).toLowerCase();
+
+      if (!validExtensions.includes(fileExt)) {
+        console.error('Неверное расширение файла:', fileExt);
+        fs.unlinkSync(req.file.path);
+        return res.status(400).json({
+          success: false,
+          message: 'Неподдерживаемое расширение файла'
+        });
+      }
+
+      // 4. Подготовка данных для сохранения
+      const musicData = {
+        title: req.body.title || path.parse(req.file.originalname).name,
+        artist: req.body.artist || 'Неизвестный исполнитель',
+        user: req.userId,
+        filePath: `/music/${req.file.filename}`,
+        genre: req.body.genre || 'Other',
+        duration: req.body.duration || 0,
+        size: req.file.size,
+        mimetype: req.file.mimetype
+      };
+
+      // 5. Опциональные поля
+      if (req.body.album) musicData.album = req.body.album;
+      if (req.body.lyrics) musicData.lyrics = req.body.lyrics;
+      if (req.body.explicit) musicData.explicit = req.body.explicit === 'true';
+
+      // 6. Сохранение в базу данных
+      const newMusic = new MusicModel(musicData);
+      await newMusic.save();
+
+      // 7. Логирование успешной загрузки
+      console.log(`Файл успешно загружен: ${req.file.filename}`);
+
+      // 8. Ответ клиенту
+      res.status(201).json({
+        success: true,
+        message: 'Музыка успешно загружена',
+        data: {
+          id: newMusic._id,
+          title: newMusic.title,
+          url: `/uploads/music/${req.file.filename}`,
+          artist: newMusic.artist
+        }
+      });
+
+    } catch (err) {
+      console.error('Ошибка при загрузке музыки:', err);
+
+      // Удаляем файл в случае ошибки
+      if (req.file?.path) {
+        try {
+          fs.unlinkSync(req.file.path);
+          console.log('Ошибочный файл удален');
+        } catch (unlinkErr) {
+          console.error('Ошибка при удалении файла:', unlinkErr);
+        }
+      }
+
+      // Определяем тип ошибки
+      let errorMessage = 'Произошла ошибка при загрузке';
+      let statusCode = 500;
+
+      if (err.name === 'ValidationError') {
+        statusCode = 400;
+        errorMessage = 'Ошибка валидации данных: ' + Object.values(err.errors).map(e => e.message).join(', ');
+      } else if (err.code === 11000) {
+        statusCode = 409;
+        errorMessage = 'Такой файл уже существует';
+      }
+
+      res.status(statusCode).json({
+        success: false,
+        message: errorMessage,
+        error: process.env.NODE_ENV === 'development' ? err.message : undefined
+      });
+    }
+  }
+);
+
+// Middleware для обработки ошибок Multer
+app.use((err, req, res, next) => {
+  if (err instanceof multer.MulterError) {
+    // Ошибки Multer (размер файла, количество файлов и т.д.)
+    console.error('Multer Error:', err);
+
+    let message = 'Ошибка загрузки файла';
+    if (err.code === 'LIMIT_FILE_SIZE') {
+      message = `Размер файла превышает ${uploadMusic.limits.fileSize / (1024 * 1024)}MB`;
+    } else if (err.code === 'LIMIT_FILE_COUNT') {
+      message = 'Превышено количество файлов';
+    } else if (err.code === 'LIMIT_UNEXPECTED_FILE') {
+      message = 'Неподдерживаемый тип файла';
+    }
+
+    return res.status(400).json({ 
+      success: false,
+      message 
+    });
+  }
+  next(err);
+});

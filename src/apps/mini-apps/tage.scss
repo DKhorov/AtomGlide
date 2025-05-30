@@ -1,0 +1,69 @@
+.tags-page-container {
+    width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 10px;
+    overflow-y: scroll;
+    height: 100vh;
+  
+    .tag-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+  
+      .back-link {
+        color: #1976d2;
+        text-decoration: none;
+        font-size: 16px;
+  
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  
+    .tags-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+  
+      .tag-chip {
+        padding: 10px 15px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+  
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+  
+    .posts-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 30px;
+    }
+  }
+
+
+  .tags-page-container::-webkit-scrollbar {
+    width: 0px;
+  }
+  
+  .tags-page-container::-webkit-scrollbar-track {
+    background: #000000;
+    border-radius: 3px;
+  }
+  
+  .tags-page-container::-webkit-scrollbar-thumb {
+    background: #282828;
+    border-radius: 3px;
+  }
+  
+  .tags-page-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }

@@ -1,0 +1,236 @@
+// Login.module.scss
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes scanner {
+  0% { background-position: -100% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulseGlow {
+  0% { opacity: 0.4; }
+  50% { opacity: 1; }
+  100% { opacity: 0.4; }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+.spaceContainer {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+      background: url("https://wallpapercave.com/wp/wp2757874.gif");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    animation: float 20s linear infinite;
+    opacity: 0.5;
+  }
+}
+
+
+.grayPanel {
+  width: 90%;
+  max-width: 400px;
+  padding: 2.5rem;
+  background: #000000;
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  position: relative;
+  z-index: 1;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: rgb(51, 51, 51);
+    border-radius: 20px;
+    z-index: -1;
+    filter: blur(10px);
+    opacity: 0.5;
+  }
+}
+
+.panelHeader {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.metalAvatar {
+  width: 88px !important;
+  height: 88px !important;
+  margin: 0 auto 1.5rem !important;
+  border: 2px solid rgba(255, 255, 255, 0.2) !important;
+  background: linear-gradient(145deg, #363636, #2a2a2a) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+  animation: pulseGlow 3s ease-in-out infinite !important;
+}
+
+.osTitle {
+  font-size: 28px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.5px;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.osSubtitle {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  text-align: center;
+}
+
+.terminalForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.hudLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: #9a9a9a;
+  letter-spacing: 0.3px;
+}
+
+.graphiteField {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 15px;
+  color: #ffffff;
+  background: rgba(54, 54, 54, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+  
+  &:focus {
+    border-color: #6495ed;
+    box-shadow: 0 0 20px rgba(100, 149, 237, 0.3);
+    background: rgba(64, 64, 64, 0.9);
+  }
+  
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+  }
+}
+
+.systemAlert {
+  font-size: 12px;
+  color: #ff6961;
+  padding: 8px 12px;
+  background: rgba(255, 105, 97, 0.1);
+  border-radius: 6px;
+  border-left: 3px solid #ff6961;
+}
+
+.securityNotice {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  background: rgba(255, 105, 97, 0.08);
+  border: 1px solid #ff6961;
+  border-radius: 8px;
+  color: #ff6961;
+  font-size: 13px;
+  gap: 10px;
+}
+
+.warningIcon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.controlRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.titaniumLink {
+  font-size: 13px;
+  color: #6495ed;
+  text-decoration: none;
+  transition: opacity 0.25s;
+  
+  &:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+  }
+}
+
+.proceedButton {
+  padding: 12px 32px;
+  font-size: 14px;
+  font-weight: 500;
+  background: linear-gradient(45deg, #6495ed, #58a6ff);
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 17px rgba(100, 149, 237, 0.3);
+  }
+  
+  &:active {
+    transform: translateY(1px);
+  }
+  
+  &:disabled {
+    background: linear-gradient(45deg, #4a6a9e, #3d7ab3);
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+}
+
+.loaderRing {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #fff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

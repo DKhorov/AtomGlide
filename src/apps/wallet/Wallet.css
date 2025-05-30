@@ -1,0 +1,368 @@
+.wallet-container {
+    width: 99%;
+    margin: 0 auto;
+    padding: 20px;
+    height: auto;
+    background-color: #0f141a;
+    border: solid 1px #31373f;
+    color: #ffffff;
+    overflow-y: auto;
+    border-radius: 12px;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+    .wallet-container {
+        padding: 15px;
+        margin-top: 20px;
+        border-radius: 8px;
+    }
+}
+
+.wallet-header {
+    margin-bottom: 24px;
+    font-size: 20px;
+    margin-left: 30px;
+}
+
+@media (max-width: 768px) {
+    .wallet-header {
+        margin-left: 15px;
+        font-size: 18px;
+        margin-bottom: 18px;
+    }
+}
+
+.wallet-header h2 {
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.wallet-balance {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 24px;
+}
+
+@media (max-width: 768px) {
+    .wallet-balance {
+        font-size: 20px;
+        flex-wrap: wrap;
+    }
+}
+
+.balance-amount {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1890ff;
+}
+
+@media (max-width: 768px) {
+    .balance-amount {
+        font-size: 20px;
+    }
+}
+
+.wallet-actions {
+    display: flex;
+    margin-bottom: 24px;
+}
+
+@media (max-width: 768px) {
+    .wallet-actions {
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 18px;
+    }
+}
+
+.wallet-actions button {
+    margin-left: 30px;
+}
+
+@media (max-width: 768px) {
+    .wallet-actions button {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+.wallet-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+@media (max-width: 768px) {
+    .wallet-tabs {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+}
+
+.wallet-content {
+    min-height: 300px;
+}
+
+@media (max-width: 768px) {
+    .wallet-content {
+        min-height: auto;
+    }
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+
+.balance-section {
+    padding: 16px;
+}
+
+@media (max-width: 768px) {
+    .balance-section {
+        padding: 10px;
+    }
+}
+
+.balance-card {
+    background-color: #1a2027;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid #31373f;
+}
+
+@media (max-width: 768px) {
+    .balance-card {
+        padding: 15px;
+    }
+}
+
+.balance-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    color: #a0a0a0;
+}
+
+.balance-card-amount {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .balance-card-amount {
+        font-size: 24px;
+        margin: 15px 0;
+    }
+}
+
+.history-section {
+    background-color: #1a2027;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #31373f;
+}
+
+.transfer-form {
+    padding: 10px;
+    color: white;
+}
+
+.ant-input,
+.ant-input-number,
+.ant-select-selector,
+.ant-input-textarea {
+    background-color: #1a2027 !important;
+    color: #ffffff !important;
+    border-color: #31373f !important;
+}
+
+.ant-input:hover,
+.ant-input-number:hover,
+.ant-select-selector:hover,
+.ant-input-textarea:hover {
+    border-color: #1890ff !important;
+}
+
+.ant-input:focus,
+.ant-input-number:focus,
+.ant-select-selector:focus,
+.ant-input-textarea:focus {
+    border-color: #1890ff !important;
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2) !important;
+}
+
+.ant-input::placeholder,
+.ant-input-textarea::placeholder {
+    color: #6a6a6a !important;
+    opacity: 1 !important;
+}
+
+.ant-select-dropdown {
+    background-color: #1a2027 !important;
+    border: 1px solid #31373f !important;
+}
+
+.ant-select-item {
+    color: #ffffff !important;
+}
+
+.ant-select-item-option-active {
+    background-color: #252f3d !important;
+}
+
+.ant-select-item-option-selected {
+    background-color: #1e3a5f !important;
+}
+
+.ant-input-number {
+    background-color: #1a2027 !important;
+    border-color: #31373f !important;
+}
+
+.ant-input-number-input {
+    background-color: transparent !important;
+    color: #ffffff !important;
+}
+
+.ant-input-number-handler-wrap {
+    background-color: #1a2027 !important;
+    border-left: 1px solid #31373f !important;
+}
+
+.ant-input-number-handler-up,
+.ant-input-number-handler-down {
+    color: #a0a0a0 !important;
+    border-bottom: 1px solid #31373f !important;
+}
+
+.ant-input-number-handler-up:hover,
+.ant-input-number-handler-down:hover {
+    background-color: #252f3d !important;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #a0a0a0;
+}
+
+.transfer-summary {
+    background-color: #1a2027;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #31373f;
+}
+
+.transfer-summary div {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+}
+
+.transfer-summary span {
+    font-weight: bold;
+}
+
+.ant-list-item {
+    padding: 12px 16px;
+    border-bottom: 1px solid #31373f !important;
+    background-color: #1a2027;
+}
+
+.ant-list-item:hover {
+    background-color: #252f3d !important;
+}
+
+.ant-list-item-meta-title {
+    color: #ffffff !important;
+}
+
+.ant-list-item-meta-description {
+    color: #b0b0b0 !important;
+}
+
+.ant-modal-content {
+    background-color: #1a2027 !important;
+    color: #ffffff !important;
+    border: 1px solid #31373f !important;
+}
+
+@media (max-width: 768px) {
+    .ant-modal-content {
+        width: 90% !important;
+        margin: 0 auto;
+    }
+}
+
+.ant-modal-header {
+    background-color: #1a2027 !important;
+    border-bottom: 1px solid #31373f !important;
+}
+
+.ant-modal-title {
+    color: #ffffff !important;
+}
+
+.ant-modal-close-x {
+    color: #a0a0a0 !important;
+}
+
+.ant-btn-default {
+    background-color: #1a2027 !important;
+    color: #ffffff !important;
+    border-color: #31373f !important;
+}
+
+.ant-btn-default:hover {
+    background-color: #252f3d !important;
+    border-color: #1890ff !important;
+    color: #1890ff !important;
+}
+
+.ant-btn-primary {
+    background-color: #1890ff !important;
+    border-color: #1890ff !important;
+}
+
+.ant-btn-primary:hover {
+    background-color: #40a9ff !important;
+    border-color: #40a9ff !important;
+}
+
+.cdf {
+    margin-left: 30px;
+}
+
+@media (max-width: 768px) {
+    .cdf {
+        margin-left: 15px;
+    }
+}
+
+.dddff{
+    margin-left: 30px;
+}
+.dee{
+    width: 200px;
+    height: 20px;
+    background-color: #1890ff;
+    border-radius: 20px;
+    
+}
